@@ -21,8 +21,6 @@ env:
   ECS_CLUSTER: dev-cluster
   ECS_TASK_DEFINITION: .aws/task-definition.json
   CONTAINER_NAME: "spring-app"
-  ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-  IMAGE_TAG: latest
 
 jobs:
   build:
@@ -53,6 +51,9 @@ jobs:
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: latest
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
