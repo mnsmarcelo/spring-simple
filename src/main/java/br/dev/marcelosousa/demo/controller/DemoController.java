@@ -13,4 +13,9 @@ public class DemoController {
     public ResponseEntity<String> healthcheck() {
         return ResponseEntity.ok("OK");
     }
+
+    @GetMapping("/")
+    public ResponseEntity<String> home() {
+        return ResponseEntity.ok("OK, home");
+    }
 }
