@@ -14,6 +14,13 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  AWS_REGION: us-east-2
+  ECR_REPOSITORY: spring-app-ecr
+  ECS_SERVICE: new-service
+  ECS_CLUSTER: dev-cluster
+  ECS_TASK_DEFINITION: .aws/task-definition.json
+
 jobs:
   build:
 
@@ -49,3 +56,11 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
+      with:
+        task-definition: ${{ env.ECS_TASK_DEFINITION }}
+        container-name: ${{ env.CONTAINER_NAME }}
+        image: ${{ steps.build-image.outputs.image }}
