@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Tests with Maven
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
       - '!master'   # excludes master
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -31,5 +31,4 @@ jobs:
       run: mvn -B package --file pom.xml
 
     - name: Test with Maven
-    - uses: actions/checkout@v4
       run: mvn test
