@@ -1,4 +1,4 @@
-package br.dev.marcelosousa.demo;
+package br.dev.marcelosousa.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

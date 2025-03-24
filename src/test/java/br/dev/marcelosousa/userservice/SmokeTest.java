@@ -1,6 +1,6 @@
-package br.dev.marcelosousa.demo;
+package br.dev.marcelosousa.userservice;
 
-import br.dev.marcelosousa.demo.controller.DemoController;
+import br.dev.marcelosousa.userservice.controller.DemoController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
