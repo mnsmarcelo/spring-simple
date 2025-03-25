@@ -12,8 +12,6 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
-    private UUID id;
-
     @NotBlank(message = "Name is required")
     private String name;
 
