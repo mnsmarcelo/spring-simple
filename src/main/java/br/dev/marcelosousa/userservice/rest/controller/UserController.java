@@ -1,6 +1,5 @@
 package br.dev.marcelosousa.userservice.rest.controller;
 
-import br.dev.marcelosousa.userservice.controller.DemoController;
 import br.dev.marcelosousa.userservice.dto.UserDTO;
 import br.dev.marcelosousa.userservice.exceptions.EmailUniquenessException;
 import br.dev.marcelosousa.userservice.model.User;
@@ -34,11 +33,14 @@ public class UserController {
             throw new EmailUniquenessException("Email already in use");
         } else {
             var user = new User();
-            user.setActive(false);;
+            user.setActive(false);
             user.setEmail(userDTO.getEmail());
             user.setName(userDTO.getName());
             user.setPassword(userDTO.getPassword());
             userRepository.save(user);
+
+            log.info("User created {}", user);
+
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
         }
     }
